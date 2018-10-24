@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user.username }}, here are your campaigns:
+  <p><a href="{% url 'logout' %}">logout</a></p>
+{% else %}
+  <p>Please login or sign up</p>
+  <a href="{% url 'login' %}" id="login">login</a> |
+  <a href="{% url 'signup' %}" id="signup">signup</a>
+{% endif %}
+{% endblock %}

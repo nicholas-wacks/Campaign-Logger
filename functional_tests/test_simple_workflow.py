@@ -1,14 +1,29 @@
 from selenium.webdriver.common.keys import Keys
 from .base import FunctionalTest
 
+BOB_PASSWORD = 'G0Atz4R3al!'
+
 class SimpleWorkflowTest(FunctionalTest):
 
     def test_user_can_make_campagin_and_invite(self):
-        # User Bob goes to base page and sees a link to log in
+        # User Bob, our first invited user, goes to our site and sees a link to log in or sign up
+        self.browser.get(self.live_server_url)
+        login_link = self.browser.find_element_by_css_selector('a#signup')
+        login_link.click()
 
-        # Bob creates a new account
+        # Bob uses the new user form to create his account
+        username_input = self.browser.find_element_by_css_selector('input#id_username')
+        email_input = self.browser.find_element_by_css_selector('input#id_email')
+        password_input = self.browser.find_element_by_css_selector('input#id_password1')
+        password_repeat_input = self.browser.find_element_by_css_selector('input#id_password2')
+        
+        username_input.send_keys('DM_Bob')
+        email_input.send_keys('dm.bob@fakemail.com')
+        password_input.send_keys(BOB_PASSWORD)
+        password_repeat_input.send_keys(BOB_PASSWORD)
 
         # Bob sees that he is now logged in and has the option to log out
+        self.fail('finish this test')
 
         # Bob sees an empty list of campaigns, and selects a button 
         #   to create a new one
