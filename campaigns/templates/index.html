@@ -5,7 +5,8 @@
 {% block content %}
 {% if user.is_authenticated %}
   Hi {{ user.username }}, here are your campaigns:
-  <p><a href="{% url 'logout' %}">logout</a></p>
+  <p><a href="{% url 'logout' %}" id="logout">logout</a></p>
+  <a class="btn btn-primary" href="#" role="button" id="new_campaign">New Campaign</a>
 {% else %}
   <p>Please login or sign up</p>
   <a href="{% url 'login' %}" id="login">login</a> |

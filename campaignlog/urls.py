@@ -24,8 +24,8 @@ from django.views.generic.base import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('campaigns/', include('campaigns.urls')),
-    #path('', RedirectView.as_view(url='/campaigns/'), name='home'),
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('', RedirectView.as_view(url='/campaigns/'), name='home'),
+    #path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('users/', include('users.urls')),
     path('users/', include('django.contrib.auth.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,5 +1,7 @@
 from selenium.webdriver.common.keys import Keys
 from .base import FunctionalTest
+from selenium.common.exceptions import WebDriverException
+from time import sleep
 
 BOB_PASSWORD = 'G0Atz4R3al!'
 
@@ -12,7 +14,7 @@ class SimpleWorkflowTest(FunctionalTest):
         login_link.click()
 
         # Bob uses the new user form to create his account
-        username_input = self.browser.find_element_by_css_selector('input#id_username')
+        username_input = self.wait_for(lambda: self.browser.find_element_by_css_selector('input#id_username'))
         email_input = self.browser.find_element_by_css_selector('input#id_email')
         password_input = self.browser.find_element_by_css_selector('input#id_password1')
         password_repeat_input = self.browser.find_element_by_css_selector('input#id_password2')
@@ -21,16 +23,33 @@ class SimpleWorkflowTest(FunctionalTest):
         email_input.send_keys('dm.bob@fakemail.com')
         password_input.send_keys(BOB_PASSWORD)
         password_repeat_input.send_keys(BOB_PASSWORD)
+        password_repeat_input.send_keys(Keys.ENTER)
+
+        # Bob logs in with his new account
+        self.wait_for(lambda: self.browser.find_element_by_css_selector('form#login_form'))
+        username_input = self.browser.find_element_by_css_selector('input#id_username')
+        password_input = self.browser.find_element_by_css_selector('input#id_password')
+        username_input.send_keys('DM_Bob')
+        password_input.send_keys(BOB_PASSWORD)
+        password_input.send_keys(Keys.ENTER)
 
         # Bob sees that he is now logged in and has the option to log out
-        self.fail('finish this test')
+        self.wait_for(lambda: self.browser.find_element_by_css_selector('a#logout'))
 
         # Bob sees an empty list of campaigns, and selects a button 
         #   to create a new one
+        self.wait_for(lambda: self.browser.find_element_by_css_selector('table#campaigns'))
+        self.assertEqual(0, self.browser.find_elements_by_css_selector('table#campaigns td').count())
+        new_campaign_button = self.browser.find_element_by_css_selector('a#new_campaign')
+        new_campaign_button.click()
 
         # Bob names his campaign "The Boat's Requiem"
+        campaign_name_input = self.browser.find_element_by_css_selector('input#id_name')
+        campaign_name_input.send_keys('The Boat\'s Requiem')
+        campaign_name_input.send_keys(Keys.ENTER)
 
         # Bob sees that his campaign has no items
+        self.fail('finish this test')
 
         # Bob creates a new character record, and gives it a name of "Wesley",
         #   and a description of "Dapper Bard and aspiring pirate"
