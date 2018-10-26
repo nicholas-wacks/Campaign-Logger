@@ -48,6 +48,8 @@ class SimpleWorkflowTest(FunctionalTest):
         campaign_name_input.send_keys('The Boat\'s Requiem')
         campaign_name_input.send_keys(Keys.ENTER)
 
+        # Bob sees his campaign in the list and clicks into it
+
         # Bob sees that his campaign has no items
         self.fail('finish this test')
 
