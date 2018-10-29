@@ -27,7 +27,7 @@
             <div class="navbar-collapse collapse">
                 {% block navbar %}
                 <ul class="nav navbar-nav">
-                    <a class="navbar-brand" href="#">Campaign Logger</a>
+                    <a class="navbar-brand" href="{% url 'index' %}">Campaign Logger</a>
                     {% if user.is_authenticated %}
                     <li><a href="{% url 'logout' %}" id="logout">logout</a></li>
                     {% else %}
