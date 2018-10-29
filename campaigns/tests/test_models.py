@@ -13,4 +13,4 @@ class CampaignModelTest(TestCase):
         _campaign.Users.add(_user)
         _campaign.save()
 
-        self.assertIn(_campaign, _user.campaign_set.all())
+        self.assertIn(_campaign, _user.campaigns.all())
