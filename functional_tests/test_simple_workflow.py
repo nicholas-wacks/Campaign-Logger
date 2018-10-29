@@ -43,18 +43,27 @@ class SimpleWorkflowTest(FunctionalTest):
         new_campaign_button = self.browser.find_element_by_css_selector('a#new_campaign')
         new_campaign_button.click()
 
-        # Bob names his campaign "The Boat's Requiem"
+        # Bob names his campaign "The Boat's Requiem" and gives a description
         campaign_name_input = self.browser.find_element_by_css_selector('input#id_name')
+        campaign_description_input = self.browser.find_element_by_css_selector('input#id_name')
         campaign_name_input.send_keys('The Boat\'s Requiem')
-        campaign_name_input.send_keys(Keys.ENTER)
+        campaign_description_input.send_keys('A testing campaign for testing things')
+        campaign_description_input.send_keys(Keys.ENTER)
 
         # Bob sees his campaign in the list and clicks into it
+        self.wait_for(lambda: self.browser.find_element_by_css_selector('table#campaigns'))
+        campaign_link = self.browser.find_element_by_link_text('The Boat\'s Requiem')
+        campaign_link.click()
 
-        # Bob sees that his campaign has no items
-        self.fail('finish this test')
+        # Bob sees that his campaign has no items, and clicks to make a new one
+        self.wait_for(lambda: self.browser.find_element_by_css_selector('table#characters'))
+        self.assertEqual(0, self.browser.find_elements_by_css_selector('table#characters td').count())
+        new_item_button = self.browser.find_element_by_css_selector('a#new_character')
+        new_item_button.click()
 
         # Bob creates a new character record, and gives it a name of "Wesley",
         #   and a description of "Dapper Bard and aspiring pirate"
+        self.fail('finish this test')
 
         # Bob returns to the campaign's page and sees the Wesley record
 
