@@ -20,6 +20,8 @@ class CampaignFormTest(TestCase):
         user_ = User.objects.create_user('Flumphy', 'flumph@dire.space', 'dire565Flumpher')
         form = CampaignForm(data={'Name': 'Revenge of the Flumph'})
         new_campaign = form.save(for_user=user_)
+        
+        self.assertEqual(new_campaign.Users.first(), user_)
         self.assertEqual(new_campaign, user_.campaigns.first())
-        self.assertEqual(new_campaign.text, 'Revenge of the Flumph')
+        self.assertEqual(new_campaign.Name, 'Revenge of the Flumph')
         self.assertEqual(new_campaign.Admins.first(), user_)

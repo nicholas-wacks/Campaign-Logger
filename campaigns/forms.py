@@ -19,7 +19,7 @@ class CampaignForm(forms.models.ModelForm):
         }
 
     def save(self, for_user):
-        return super().save()
+        super().save()
         self.instance.Users.add(for_user)
         self.instance.Admins.add(for_user)
         return super().save()
