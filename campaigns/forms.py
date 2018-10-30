@@ -19,6 +19,8 @@ class CampaignForm(forms.models.ModelForm):
         }
 
     def save(self, for_user):
+        # Have to save the instance first to ensure we have a valid id before
+        #   adding many to many references
         super().save()
         self.instance.Users.add(for_user)
         self.instance.Admins.add(for_user)
