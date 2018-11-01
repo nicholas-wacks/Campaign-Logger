@@ -5,15 +5,37 @@
 {% block content %}
 {% if user.is_authenticated %}
 <div class="jumbotron">
-    <h2>Campaigns</h2>
-    <a class="btn btn-primary" href="#" role="button" id="new_campaign">New Campaign</a>
+  <h2>Campaigns</h2>
+  <a class="btn btn-primary" href="#" role="button" id="new_campaign">New Campaign</a>
 </div>
-  
-<table id="campaigns">
-  
-</table>
+
+<div class="list-group">
+  {% for campaign in campaigns %}
+  <a href="/campaigns/{{ campaign.id }}/" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h4 class="mb-1">{{ campaign.Name }}</h5>
+      <!--<small class="text-muted">Star?</small> TODO: signify ownership/admin access-->
+    </div>
+    <p class="mb-1">{{ campaign.Description }}</p>
+  </a>
+  {% endfor %}
+  <a href="#" class="list-group-item list-group-item-action">
+    Cras justo odio
+  </a>
+  <a href="/campaigns/ campaign.id }}/" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1"> campaign.Name }}</h5>
+      <!--<small class="text-muted">Star?</small> TODO: signify ownership/admin access-->
+    </div>
+    <p class="mb-1">zed campaign.Description }}</p>
+  </a>
+
+  <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+  <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+  <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+</div>
 
 {% else %}
-  <p>Please login or sign up</p>
+<p>Please login or sign up</p>
 {% endif %}
 {% endblock %}
