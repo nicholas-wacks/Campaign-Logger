@@ -4,6 +4,7 @@ from selenium.common.exceptions import WebDriverException
 from time import sleep
 
 BOB_PASSWORD = 'G0Atz4R3al!'
+CAMPAIGNS_LIST_SELECTOR = 'div#campaigns'
 
 class SimpleWorkflowTest(FunctionalTest):
 
@@ -38,8 +39,8 @@ class SimpleWorkflowTest(FunctionalTest):
 
         # Bob sees an empty list of campaigns, and selects a button 
         #   to create a new one
-        self.wait_for(lambda: self.browser.find_element_by_css_selector('table#campaigns'))
-        self.assertEqual(0, self.browser.find_elements_by_css_selector('table#campaigns td').count())
+        self.wait_for(lambda: self.browser.find_element_by_css_selector(CAMPAIGNS_LIST_SELECTOR))
+        self.assertEqual(0, self.browser.find_elements_by_css_selector(CAMPAIGNS_LIST_SELECTOR + ' a.list-group-item').count())
         new_campaign_button = self.browser.find_element_by_css_selector('a#new_campaign')
         new_campaign_button.click()
 
@@ -51,7 +52,7 @@ class SimpleWorkflowTest(FunctionalTest):
         campaign_description_input.send_keys(Keys.ENTER)
 
         # Bob sees his campaign in the list and clicks into it
-        self.wait_for(lambda: self.browser.find_element_by_css_selector('table#campaigns'))
+        self.wait_for(lambda: self.browser.find_element_by_css_selector(CAMPAIGNS_LIST_SELECTOR))
         campaign_link = self.browser.find_element_by_link_text('The Boat\'s Requiem')
         campaign_link.click()
 
