@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
 
     {% load static %}
@@ -15,32 +15,24 @@
 </head>
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Campaign Logs</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 {% block navbar %}
-                <ul class="nav navbar-nav">
-                    <a class="navbar-brand" href="{% url 'index' %}">Campaign Logger</a>
+                <div class="navbar-nav">
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}" id="logout">logout</a></li>
+                    <a class="nav-item nav-link" href="{% url 'logout' %}" id="logout">logout</a>
                     {% else %}
-                    <li><a href="{% url 'login' %}" id="login">login</a> </li>
-                    <li><a href="{% url 'signup' %}" id="signup">signup</a></li>
+                    <a class="nav-item nav-link" href="{% url 'login' %}" id="login">login</a> 
+                    <a class="nav-item nav-link" href="{% url 'signup' %}" id="signup">signup</a>
                     {% endif %}
-                </ul>
+                </div>
                 {% endblock %}
-            </div>
         </div>
-    </div>
-    <nav class="navbar navbar-">
-
     </nav>
     <div class="container">
         <div class="row">

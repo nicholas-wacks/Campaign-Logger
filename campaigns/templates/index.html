@@ -14,25 +14,19 @@
   <a href="/campaigns/{{ campaign.id }}/" class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
       <h4 class="mb-1">{{ campaign.Name }}</h5>
-      <!--<small class="text-muted">Star?</small> TODO: signify ownership/admin access-->
+        <!--<small class="text-muted">Star?</small> TODO: signify ownership/admin access-->
     </div>
     <p class="mb-1">{{ campaign.Description }}</p>
   </a>
   {% endfor %}
   <a href="#" class="list-group-item list-group-item-action">
-    Cras justo odio
-  </a>
-  <a href="/campaigns/ campaign.id }}/" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1"> campaign.Name }}</h5>
-      <!--<small class="text-muted">Star?</small> TODO: signify ownership/admin access-->
-    </div>
+    <h4>Campaign Name</h3>
     <p class="mb-1">zed campaign.Description }}</p>
   </a>
-
-  <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-  <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-  <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+  <a href="/campaigns/campaign.id/" class="list-group-item list-group-item-action flex-column align-items-start">
+    <h4> campaign.Name }}</h3>
+    <p class="mb-1">zed campaign.Description }}</p>
+  </a>
 </div>
 
 {% else %}
