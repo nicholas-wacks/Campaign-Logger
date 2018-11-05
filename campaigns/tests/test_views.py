@@ -4,7 +4,7 @@ from campaigns.views import index
 from campaigns.models import Campaign
 from users.models import User
 
-CAMPAIGNS_LIST_ELEMENT = escape('<table id="campaigns">')
+CAMPAIGNS_LIST_ELEMENT = '<div class="list-group" id="campaigns">'
 USERNAME = 'Flumphy'
 USER_EMAIL = 'flumph@dire.space'
 USER_PASSWORD = 'dire565Flumpher'
@@ -25,8 +25,8 @@ class HomePageTest(TestCase):
         new_campaign.Users.add(user_)
         new_campaign.save()
 
-        login = self.client.login(username=USERNAME, password=USER_PASSWORD)
+        self.client.login(username=USERNAME, password=USER_PASSWORD)
         response = self.client.get('/campaigns/')
-        
-        self.assertContains(response, 'Attack of the Flumphs') 
-        self.assertContains(new_campaign.Name)
+
+        self.assertContains(response, 'Attack of the Flumphs')
+        self.assertContains(response, CAMPAIGNS_LIST_ELEMENT)
